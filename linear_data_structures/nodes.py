@@ -3,26 +3,34 @@ class Node:
         self.value = value
         self.link_node = link_node
 
-    def set_link_node(self, link_node):
-        self.link_node = link_node
+    @property
+    def link_node(self):
+        return self._link_node
 
-    def get_link_node(self):
-        return self.link_node
+    @link_node.setter
+    def link_node(self, value):
+        self._link_node = value
 
-    def get_value(self):
-        return self.value
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, value):
+        self._value = value
 
 
-# Add your code below:
-yacko = Node("likes to yak")
-wacko = Node("has a penchant for hoarding snacks")
-dot = Node("enjoys spending time in movie lots")
+if __name__ == '__main__':
+    # Add your code below:
+    yacko = Node("likes to yak")
+    wacko = Node("has a penchant for hoarding snacks")
+    dot = Node("enjoys spending time in movie lots")
 
-yacko.set_link_node(dot)
-dot.set_link_node(wacko)
+    yacko.link_node = dot
+    dot.link_node = wacko
 
-dots_data = yacko.get_link_node().get_value()
-wackos_data = dot.get_link_node().get_value()
+    dots_data = yacko.link_node.value
+    wackos_data = dot.link_node.value
 
-print(dots_data)
-print(wackos_data)
+    print(dots_data)
+    print(wackos_data)
