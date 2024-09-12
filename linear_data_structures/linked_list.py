@@ -46,3 +46,9 @@ class LinkedList:
                     current_node = None
                 else:
                     current_node = next_node
+
+    def __iter__(self):
+        current_node = self.head_node
+        while current_node:
+            yield current_node.get_value()
+            current_node = current_node.get_next_node()
