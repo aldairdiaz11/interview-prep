@@ -19,7 +19,7 @@ def binary_search_iterative(arr, target):
     left_pointer = 0
     right_pointer = len(arr)
 
-    while left_pointer <= right_pointer:
+    while left_pointer < right_pointer:
         mid_idx = (left_pointer + right_pointer) // 2
         mid_val = arr[mid_idx]
 
@@ -42,4 +42,4 @@ if __name__ == "__main__":
     print(binary_search_recursive(sorted_values, 0, len(sorted_values), 17))
 
     print("Iterative implementation: ")
-    print(binary_search_iterative(sorted_values, 17))
+    print(binary_search_iterative(sorted_values, 12))
