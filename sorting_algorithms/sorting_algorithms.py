@@ -57,6 +57,32 @@ def quick_sort(array, start, end):
     quick_sort(array, lesser_than_pointer + 1, end)
 
 
+# Radix Sort
+def radix_sort(array):
+    max_value = max(array)
+    max_exponent = len(str(max_value))
+    being_sorted = array[:]
+
+    for exponent in range(max_exponent):
+        position = exponent + 1
+        index = -position
+
+        digits = [[] for _ in range(10)]
+
+        for number in being_sorted:
+            try:
+                digit = int(str(number)[index])
+            except IndexError:
+                digit = 0
+            digits[digit].append(number)
+
+        being_sorted = []
+        for numeral in digits:
+            being_sorted.extend(numeral)
+
+    return being_sorted
+
+
 if __name__ == '__main__':
     # Bubble sort
     nums = [5, 2, 9, 1, 5, 6]
@@ -84,3 +110,7 @@ if __name__ == '__main__':
     # use quicksort to sort the list, then print it out!
     quick_sort(unsorted_list, 0, len(unsorted_list) - 1)
     print(unsorted_list)
+
+    # Radix Sort
+    unsorted_list = [830, 921, 163, 373, 961, 559, 89, 199, 535, 959, 40, 641, 355, 689, 621, 183, 182, 524, 1]
+    print(radix_sort(unsorted_list))
