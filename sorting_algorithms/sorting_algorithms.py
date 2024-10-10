@@ -1,3 +1,6 @@
+from random import randrange, shuffle
+
+
 # Bubble sort
 def bubble_sort(array):
     for i in range(len(array)):
@@ -35,6 +38,25 @@ def merge(array1, array2):
     return result
 
 
+# Quick Sort
+def quick_sort(array, start, end):
+    if start >= end:
+        return
+
+    pivot_idx = randrange(start, end)
+    array[-1], array[pivot_idx] = array[pivot_idx], array[-1]
+
+    lesser_than_pointer = start
+    for idx in range(start, end):
+        if array[idx] < array[lesser_than_pointer]:
+            array[lesser_than_pointer], array[idx] = array[idx], array[lesser_than_pointer]
+            lesser_than_pointer += 1
+    array[end], array[lesser_than_pointer] = array[lesser_than_pointer], array[end]
+
+    quick_sort(array, start, lesser_than_pointer - 1)
+    quick_sort(array, lesser_than_pointer + 1, end)
+
+
 if __name__ == '__main__':
     # Bubble sort
     nums = [5, 2, 9, 1, 5, 6]
@@ -54,3 +76,11 @@ if __name__ == '__main__':
     print(ordered_list1)
     print(ordered_list2)
     print(ordered_list3)
+
+    # Quick sort
+    unsorted_list = [3, 7, 12, 24, 36, 42]
+    shuffle(unsorted_list)
+    print(unsorted_list)
+    # use quicksort to sort the list, then print it out!
+    quick_sort(unsorted_list, 0, len(unsorted_list) - 1)
+    print(unsorted_list)

@@ -46,7 +46,6 @@ class MinHeap:
         self.heapify_down()
         return min_
 
-
     def get_smaller_child_idx(self, idx):
         if self.right_child_idx(idx) > self.count:
             return self.left_child_idx(idx)
