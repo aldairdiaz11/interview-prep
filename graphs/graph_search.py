@@ -1,5 +1,5 @@
 from heapq import heappop, heappush
-from math import inf
+from math import inf, sqrt
 
 
 # Depth-first search function:
@@ -56,6 +56,33 @@ def dijkstra(graph, start):
                 heappush(vertices_to_explore, (new_distance, neighbor))
 
     return distances
+
+
+def a_star(graph, start, target):
+    paths_and_distances = {}
+    for vertex in graph:
+        paths_and_distances[vertex] = [inf, start.name]
+
+    paths_and_distances[start][0] = 0
+    vertices_to_explore = [(0, start)]
+
+    while vertices_to_explore:
+        curren_distance, current_vertex = heappop(vertices_to_explore)
+
+        for neighbor, edge_weight in graph[current_vertex]:
+            new_distance = curren_distance + edge_weight + heuristic(neighbor, target)
+            new_path = paths_and_distances[1] + [neighbor.name]
+
+            if new_distance < paths_and_distances[neighbor][0]:
+                paths_and_distances[neighbor][0] = new_distance
+                paths_and_distances[neighbor][1] = new_path
+                heappush(vertices_to_explore, (new_distance, neighbor))
+
+    return paths_and_distances[target][1]
+
+
+def heuristic(start, target):
+    return sqrt(abs(start.position[0] - target.position[0]) ** 2)+sqrt(abs(start.position[1] - target.position[1]) ** 2)
 
 
 if __name__ == "__main__":
