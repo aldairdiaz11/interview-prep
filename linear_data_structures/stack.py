@@ -2,10 +2,28 @@ from nodes import Node
 
 
 class Stack:
-    def __init__(self, max_size=1000):
+    def __init__(self, name, max_size=1000):
         self.top_item: None | Node = None
         self.size: int = 0
         self.max_size: int = max_size
+        self.name = name
+
+    def get_name(self) -> str:
+        return self.name
+
+    def get_size(self) -> int:
+        return self.size
+
+    def print_items(self):
+        pointer = self.top_item
+        print_list = []
+
+        while pointer:
+            print_list.append(pointer.value)
+            pointer = pointer.link_node
+
+        print_list.reverse()
+        print("{0} Stack: {1}".format(self.get_name(), print_list))
 
     def push(self, value):
         if self.has_space():
@@ -40,7 +58,7 @@ class Stack:
 
 if __name__ == "__main__":
     # Defining an empty pizza stack
-    pizza_stack = Stack(6)
+    pizza_stack = Stack("Test", 6)
     # Adding pizzas as they are ready until we have
     pizza_stack.push("pizza #1")
     pizza_stack.push("pizza #2")
